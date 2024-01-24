@@ -20,7 +20,7 @@ $.getJSON("https://raw.githubusercontent.com/orhuna/WebGIS_SLU_M1/main/Module%20
     L.geoJson(data, {
         pointToLayer: function (feature, latlng) {
 		var marker = L.marker(latlng, {icon: ratIcon});
-		marker.bindPipup(feature.properties.date + '<br/>' + feature.properties.description + '<br/>' + feature.properties.title);
+		marker.bindPopup(feature.properties.date + '<br/>' + feature.properties.description + '<br/>' + feature.properties.title);
 		return L.marker(latlng, { icon: ratIcon });
         }
     }).addTo(map);
