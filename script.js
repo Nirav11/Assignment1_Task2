@@ -12,14 +12,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 $.getJSON("https://raw.githubusercontent.com/orhuna/WebGIS_SLU_M1/main/Module%201/Assignment%201/data/sf_crime.geojson", function (data) {
     // Define the custom icon
     var ratIcon = L.icon({
-        iconUrl: 'http://maptimeboston.github.io/leaflet-intro/rat.gif', // Replace with your custom icon URL
+        iconUrl: 'http://maptimeboston.github.io/leaflet-intro/rat.gif', 
         iconSize: [50, 40]
     });
 
     // Add GeoJSON layer to the map with custom markers
     L.geoJson(data, {
         pointToLayer: function (feature, latlng) {
-            return L.marker(latlng, { icon: ratIcon });
+		var marker = L.marker(latlng, {icon: ratIcon});
+		marker.bindPipup(feature.properties.date + '<br/>' + feature.properties.description + '<br/>' + feature.properties.title);
+		return L.marker(latlng, { icon: ratIcon });
         }
     }).addTo(map);
 });
