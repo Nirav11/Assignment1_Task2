@@ -19,9 +19,10 @@ $.getJSON("https://raw.githubusercontent.com/orhuna/WebGIS_SLU_M1/main/Module%20
     // Add GeoJSON layer to the map with custom markers
     L.geoJson(data, {
         pointToLayer: function (feature, latlng) {
-		var marker = L.marker(latlng, {icon: ratIcon});
-		marker.bindPopup(feature.properties.date + '<br/>' + feature.properties.description + '<br/>' + feature.properties.title);
-		return L.marker(latlng, { icon: ratIcon });
+            var marker = L.marker(latlng, {icon: ratIcon});
+            // Bind popup to the marker with date, description, and title
+            marker.bindPopup(feature.properties.date + '<br/>' + feature.properties.description + '<br/>' + feature.properties.title);
+            return marker;
         }
     }).addTo(map);
 });
